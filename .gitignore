@@ -1,0 +1,9 @@
+# Node modules
+/books_service/node_modules/
+/user_service/node_modules/
+/order_service/node_modules/
+
+# Environment variables
+/books_service/.env
+/user_service/.env
+/order_service/.env
