@@ -4,7 +4,7 @@ import { asyncHandler } from "../middleware/asyncHandler.js";
 import { comparePassword } from "../helper/comparePassword.js";
 import { generateToken } from "../helper/generateToken.js";
 
-// Register User
+//console.log(token);ster User
 export const register = asyncHandler(async (req, res, next) => {
   const { name, email, password, role, age } = req.body;
   const isUserExist = await User.findOne({ email: req.body.email });
@@ -42,11 +42,11 @@ export const login = asyncHandler(async (req, res, next) => {
     return res.status(404).json({ message: "Invalid Credentials" });
 
   const { password, ...other } = isUserExist._doc;
-
+  const token = await generateToken(isUserExist._id)
   return res
     .status(200)
     .json({
       message: "Login successful",
-      user: { ...other, token: await generateToken(other) },
+      user: { ...other, token },
     });
 });
