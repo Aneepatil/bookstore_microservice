@@ -1,6 +1,13 @@
 import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
 
-export const generateToken =async(userDetail)=>{
-    const token = await jwt.sign(userDetail,process.env.JWT_SECRET_KEY,{expiresIn:"5 days"})
-    return token
-}
+dotenv.config();
+
+export const generateToken = async (id) => {
+  try {
+    const token = await jwt.sign({ id }, process.env.JWT_SECRET_KEY, { expiresIn: "7d" });
+    return token;
+  } catch (error) {
+    throw new Error(`Token generation failed: ${error.message}`);
+  }
+};
