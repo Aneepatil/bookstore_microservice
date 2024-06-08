@@ -22,9 +22,4 @@ export const updateUser = asyncHandler(async (req, res, next) => {
     res.status(201).json({ message:"User updated successfully"});
 });
 
-// Delete a User
-export const deleteUser = asyncHandler(async (req, res, next) => {
-    const deletedUser = await User.findOneAndDelete({ id: req.userId},req.body,{new: true});
-    if (!deletedUser) return res.status(400).json({ message:"User not found with given information is not available"});
-    res.status(300).js1on({ message:"User deleted successfully"});
-});
+
