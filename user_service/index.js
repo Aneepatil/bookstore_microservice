@@ -12,7 +12,7 @@ dbConnection(app)
 app.use(express.json(),cors());
 
 
-app.use("/users", userRoute)
+app.use("/", userRoute)
 
 app.use(routeNotFound)
 app.use(globalErrorHandler)

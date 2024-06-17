@@ -7,7 +7,7 @@ export const isAdmin = async (req, res, next) => {
     if (user.role === "admin") {
       next();
     } else {
-      return res.status(401).json({ message: "Access Denied" });
+      return res.status(401).json({ message: "Access Denied, Admin access only..." });
     }
   } catch (error) {
     res

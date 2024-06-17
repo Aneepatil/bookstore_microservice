@@ -11,7 +11,7 @@ dbConnection(app)
 
 app.use(cors(),express.json());
 
-app.use('/books',bookRoute)
+app.use('/',bookRoute)
 
 app.use(routeNotFound)
 app.use(globalErrorHandler)

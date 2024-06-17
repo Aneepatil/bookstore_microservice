@@ -9,7 +9,7 @@ export const dbConnection = async(app)=>{
         app.listen(port,()=>{
             console.clear()
             console.log(`MongoDB database connection successfully established and host is ${connection.connection.host}`)
-            console.log(`listening on port ${port}`);
+            console.log(`book service listening on port ${port}`);
         });
     } catch (error) {
         console.log("MongoDB database connection failed: " + error)

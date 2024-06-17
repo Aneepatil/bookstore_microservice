@@ -29,6 +29,7 @@ export const register = asyncHandler(async (req, res, next) => {
 
 // Login User
 export const login = asyncHandler(async (req, res, next) => {
+
   const isUserExist = await User.findOne({ email: req.body.email });
   if (!isUserExist)
     return res.status(404).json({ message: "Invalid Credentials" });

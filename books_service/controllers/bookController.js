@@ -1,5 +1,18 @@
 import { asyncHandler } from "../middleware/asyncHandler.js";
 import { Book } from "../model/Book.js";
+import https from "https";
+import axios from "axios";
+import dotenv from "dotenv";
+dotenv.config();
+
+const userBaseUrl = process.env.USER_BASE_URL;
+const orderBaseUrl = process.env.ORDER_BASE_URL;
+
+// const axiosInstance = axios.create({
+//   httpsAgent: new https.Agent({
+//     rejectUnauthorized: false, // Only for testing purposes; do not use in production
+//   }),
+// });
 
 // Get all Books
 export const allBooks = asyncHandler(async (req, res, next) => {
@@ -22,10 +35,20 @@ export const singleBook = asyncHandler(async (req, res, next) => {
 });
 
 // Create a new book
-export const createBook = asyncHandler(async (req, res, next) => {
-  const newBook = await Book.create(req.body);
-  res.status(200).send({ message: "Book created Successfully", data: newBook });
-});
+export const createBook = async (req, res, next) => {
+  try {
+    console.log(req.userId)
+    const user = await axios.get(
+      `http://localhost:8080/users/single/666312524438146a1c8eeb83`
+    );
+    // // const user = await axios.get(`${userBaseUrl}/users/single/${req.userId}`)
+    console.log(user);
+    // const newBook = await Book.create(req.body);
+    res.status(200).send({ message: "Book created Successfully", data: "user" });
+  } catch (error) {
+    next(error);
+  }
+};
 
 // Update a Book
 export const updateBook = asyncHandler(async (req, res, next) => {
